@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan | Senior Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 3s linear infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'wave': 'wave 2s linear infinite',
+                        'float': 'float 6s ease-in-out infinite'
+                    },
+                    keyframes: {
+                        wave: {
+                            '0%': { transform: 'rotate(0deg)' },
+                            '10%': { transform: 'rotate(14deg)' },
+                            '20%': { transform: 'rotate(-8deg)' },
+                            '30%': { transform: 'rotate(14deg)' },
+                            '40%': { transform: 'rotate(-4deg)' },
+                            '50%': { transform: 'rotate(10deg)' },
+                            '60%': { transform: 'rotate(0deg)' },
+                            '100%': { transform: 'rotate(0deg)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient-start: #0f172a;
+            --bg-gradient-end: #1e293b;
+            --accent: #3b82f6;
+            --accent-gradient-start: #3b82f6;
+            --accent-gradient-end: #8b5cf6;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(148, 163, 184, 0.1);
+        }
+        
+        .dark {
+            --bg-gradient-start: #0f172a;
+            --bg-gradient-end: #1e293b;
+            --accent: #3b82f6;
+            --accent-gradient-start: #3b82f6;
+            --accent-gradient-end: #8b5cf6;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --border-color: rgba(148, 163, 184, 0.1);
+            --text: #f3f4f6;
+            --subtext: #cbd5e1;
+        }
+        
+        .light {
+            --bg-gradient-start: #f0f9ff;
+            --bg-gradient-end: #e0f2fe;
+            --accent: #0284c7;
+            --accent-gradient-start: #0284c7;
+            --accent-gradient-end: #7e22ce;
+            --card-bg: rgba(224, 242, 254, 0.7);
+            --border-color: rgba(100, 116, 139, 0.1);
+            --text: #1e293b;
+            --subtext: #475569;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            color: var(--text);
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+            scroll-behavior: smooth;
+            transition: background 0.5s ease;
+        }
+        
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        
+        .hover-glow:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+        
+        .skill-bar-container {
+            height: 8px;
+            background-color: rgba(100, 116, 139, 0.15);
+        }
+        
+        .skill-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gradient-start), var(--accent-gradient-end));
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
+        
+        .animate-bounce-slow {
+            animation: bounce-slow 4s infinite;
+        }
+        
+        .text-code {
+            position: relative;
+            padding: 1px 4px;
+            background-color: rgba(100, 116, 139, 0.15);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        
+        @keyframes bounce-slow {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .wave-emoji {
+            animation-name: wave;
+            animation-duration: 2.5s;
+            animation-iteration-count: infinite;
+            display: inline-block;
+            transform-origin: 70% 70%;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .typing-text {
+            overflow: hidden;
+            border-right: 2px solid var(--accent);
+            white-space: nowrap;
+            animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent); }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(30, 41, 59, 0.1);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            border-radius: 4px;
+        }
+        
+        .subtext {
+            color: var(--subtext);
+        }
+        
+        /* Dark Mode Toggle */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .theme-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, #1e293b, #0f172a);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        input:checked + .slider {
+            background: linear-gradient(90deg, #f0f9ff, #e0f2fe);
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+            background-color: #facc15;
+        }
+        
+        /* Timeline styles */
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(135deg, var(--accent-gradient-start), var(--accent-gradient-end));
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px var(--card-bg);
+        }
+        
+        .animated-element {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Blob effect */
+        .blob {
+            border-radius: 50%;
+            filter: blur(40px);
+            position: absolute;
+            z-index: -1;
+        }
+        
+        .blob-1 {
+            background: linear-gradient(120deg, #6d28d9, #3b82f6);
+            width: 400px;
+            height: 400px;
+            top: 20%;
+            left: 10%;
+            opacity: 0.3;
+            animation: float 15s linear infinite alternate;
+        }
+        
+        .blob-2 {
+            background: linear-gradient(60deg, #ec4899, #8b5cf6);
+            width: 500px;
+            height: 500px;
+            bottom: 20%;
+            right: 10%;
+            opacity: 0.3;
+            animation: float 18s linear infinite alternate;
+        }
+    </style>
+</head>
+<body class="min-h-screen dark">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    
+    <!-- Navigation -->
+    <nav class="glass-card fixed top-0 left-0 w-full z-50 py-4 px-6 flex justify-between items-center">
+        <a href="#" class="text-xl font-bold flex items-center">
+            <span class="gradient-text">&lt;AM/&gt;</span>
+            <span class="ml-2 hidden sm:block">Alex Morgan</span>
+        </a>
+        
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#about" class="hover:text-primary-400 transition">About</a>
+            <a href="#skills" class="hover:text-primary-400 transition">Skills</a>
+            <a href="#projects" class="hover:text-primary-400 transition">Projects</a>
+            <a href="#experience" class="hover:text-primary-400 transition">Experience</a>
+            <a href="#contact" class="hover:text-primary-400 transition">Contact</a>
+            
+            <!-- Dark mode toggle -->
+            <div class="theme-toggle">
+                <input type="checkbox" id="theme-toggle-checkbox">
+                <label for="theme-toggle-checkbox" class="slider"></label>
+            </div>
+        </div>
+        
+        <div class="flex items-center md:hidden">
+            <!-- Dark mode toggle -->
+            <div class="theme-toggle mr-4">
+                <input type="checkbox" id="mobile-theme-toggle">
+                <label for="mobile-theme-toggle" class="slider"></label>
+            </div>
+            
+            <button id="mobile-menu-button" class="text-gray-300">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="glass-card fixed inset-0 z-40 flex flex-col items-center justify-center hidden">
+        <button id="close-menu" class="absolute top-4 right-4 text-2xl p-2">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="flex flex-col items-center space-y-6">
+            <a href="#about" class="text-xl">About</a>
+            <a href="#skills" class="text-xl">Skills</a>
+            <a href="#projects" class="text-xl">Projects</a>
+            <a href="#experience" class="text-xl">Experience</a>
+            <a href="#contact" class="text-xl">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center pt-16 px-6">
+        <div class="max-w-6xl mx-auto w-full">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-12 md:mb-0 animated-element">
+                    <p class="text-primary-400 mb-4 flex items-center">
+                        <span class="w-4 h-0.5 bg-primary-400 inline-block mr-2"></span>
+                        Welcome to my portfolio
+                    </p>
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">
+                        Hello, I'm <span class="gradient-text">Alex Morgan</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl mb-6 typing-text">
+                        Full Stack Software Engineer
+                    </h2>
+                    <p class="subtext mb-8 text-lg max-w-lg">
+                        I build performant, accessible, and visually appealing web applications with modern technologies.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#projects" class="glass-card py-3 px-6 rounded-lg hover-glow hover:text-white transition flex items-center">
+                            <i class="fas fa-code mr-2"></i>
+                            View Projects
+                        </a>
+                        <a href="#contact" class="py-3 px-6 rounded-lg bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 transition hover-glow flex items-center">
+                            <i class="fas fa-paper-plane mr-2"></i>
+                            Contact Me
+                        </a>
+                    </div>
+                    
+                    <!-- Tech stack logos -->
+                    <div class="mt-10">
+                        <p class="subtext mb-4">Tech I work with:</p>
+                        <div class="flex flex-wrap gap-6 opacity-75">
+                            <i class="fab fa-js text-3xl text-yellow-400"></i>
+                            <i class="fab fa-react text-3xl text-cyan-500"></i>
+                            <i class="fab fa-node text-3xl text-green-500"></i>
+                            <i class="fab fa-aws text-3xl text-orange-400"></i>
+                            <i class="fab fa-python text-3xl text-blue-500"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 relative animated-element">
+                    <div class="relative inline-block">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-500 to-purple-600 blur-2xl rounded-full opacity-30 animate-bounce-slow"></div>
+                        <div class="relative glass-card rounded-full border-2 border-primary-500/30 overflow-hidden w-72 h-72 flex items-center justify-center floating">
+                            <div class="w-60 h-60 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center">
+                                <div class="relative">
+                                    <div class="absolute inset-0 rounded-full animate-pulse bg-gradient-to-br from-primary-500/30 to-purple-500/30"></div>
+                                    <i class="fas fa-user text-7xl text-primary-400 relative"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 left-8 glass-card py-2 px-4 rounded-lg">
+                        <div class="flex items-center">
+                            <span class="w-3 h-3 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                            <span class="text-sm code-font">Currently working on new projects</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-2 flex items-center animated-element">
+                <span class="text-primary-400 mr-3"><i class="fas fa-user"></i></span>
+                <span class="gradient-text">About Me</span>
+            </h2>
+            <div class="w-16 h-0.5 bg-primary-500 mb-12 animated-element"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass-card rounded-xl p-8 animated-element">
+                    <p class="mb-4">
+                        I'm a passionate software engineer with <span class="gradient-text font-bold">5+ years</span> of experience building robust and scalable web applications.
+                        I specialize in creating modern JavaScript applications using React, Node.js, and modern cloud platforms.
+                    </p>
+                    <p class="mb-4">
+                        My journey in tech started with building small websites and has evolved into creating complex systems
+                        used by <span class="gradient-text font-bold">thousands of users daily</span>. I thrive on solving challenging problems and staying up-to-date with 
+                        the latest technologies.
+                    </p>
+                    <p class="mb-8">
+                        When I'm not coding, you can find me contributing to open-source projects, exploring new technologies,
+                        or hiking in the mountains.
+                    </p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4">Education</h3>
+                        <div class="space-y-4">
+                            <div class="glass-card p-4 rounded-lg">
+                                <h4 class="font-medium">M.Sc. in Computer Science</h4>
+                                <p class="subtext">Stanford University</p>
+                                <p class="subtext text-sm">2016-2018 | GPA: 3.8/4.0</p>
+                            </div>
+                            <div class="glass-card p-4 rounded-lg">
+                                <h4 class="font-medium">B.S. in Software Engineering</h4>
+                                <p class="subtext">MIT</p>
+                                <p class="subtext text-sm">2012-2016 | Honors: Summa Cum Laude</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-subtext hover:text-primary-400 transition">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-subtext hover:text-primary-400 transition">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-subtext hover:text-primary-400 transition">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-subtext hover:text-primary-400 transition">
+                            <i class="fab fa-dev text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="space-y-8">
+                    <div class="glass-card rounded-xl p-8 animated-element">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-primary-400 mr-2"><i class="fas fa-lightbulb"></i></span>
+                            My Philosophy
+                        </h3>
+                        <p class="mb-4">
+                            I believe that great software is built with both <span class="gradient-text">technical excellence</span> and <span class="gradient-text">user experience</span> in mind.
+                            Clean, maintainable code and intuitive interfaces should coexist.
+                        </p>
+                        <p>
+                            I focus on creating solutions that are efficient, scalable, and delightful to use.
+                        </p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-8 animated-element">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-primary-400 mr-2"><i class="fas fa-bullseye"></i></span>
+                            My Approach
+                        </h3>
+                        <div class="grid grid-cols-3 gap-4 mt-6">
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mb-3">
+                                    <i class="fas fa-search text-xl"></i>
+                                </div>
+                                <span class="text-center">Research</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mb-3">
+                                    <i class="fas fa-drafting-compass text-xl"></i>
+                                </div>
+                                <span class="text-center">Design</span>
+                            </div>
+                            <div class="flex flex-col items-center">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mb-3">
+                                    <i class="fas fa-code text-xl"></i>
+                                </div>
+                                <span class="text-center">Develop</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications -->
+                    <div class="glass-card rounded-xl p-8 animated-element">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            <span class="text-primary-400 mr-2"><i class="fas fa-certificate"></i></span>
+                            Certifications
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between glass-card p-3 rounded-lg">
+                                <div>
+                                    <h4 class="font-medium">AWS Certified Solutions Architect</h4>
+                                    <p class="subtext text-sm">AWS, 2021</p>
+                                </div>
+                                <span class="text-primary-400 text-2xl"><i class="fas fa-award"></i></span>
+                            </div>
+                            <div class="flex items-center justify-between glass-card p-3 rounded-lg">
+                                <div>
+                                    <h4 class="font-medium">Google Professional Cloud Developer</h4>
+                                    <p class="subtext text-sm">Google Cloud, 2020</p>
+                                </div>
+                                <span class="text-primary-400 text-2xl"><i class="fas fa-award"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-6 bg-gray-800/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-2 flex items-center">
+                <span class="text-primary-400 mr-3"><i class="fas fa-tools"></i></span>
+                <span class="gradient-text">Skills & Expertise</span>
+            </h2>
+            <div class="w-16 h-0.5 bg-primary-500 mb-12"></div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="glass-card rounded-xl p-8 animated-element">
+                    <h3 class="text-xl font-semibold mb-4">Technical Skills</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>JavaScript/TypeScript</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar-container rounded-full overflow-hidden">
+                                <div class="skill-bar rounded-full animate-skill" data-width="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>React & React Ecosystem</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="skill-bar-container rounded-full overflow-hidden">
+                                <div class="skill-bar rounded-full animate-skill" data-width="92"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Node.js/Express</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar-container rounded-full overflow-hidden">
+                                <div class="skill-bar rounded-full animate-skill" data-width="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>SQL & NoSQL Databases</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="skill-bar-container rounded-full overflow-hidden">
+                                <div class="skill-bar rounded-full animate-skill" data-width="88"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span>Cloud Services (AWS)</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar-container rounded-full overflow-hidden">
+                                <div class="skill-bar rounded-full animate-skill" data-width="85"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="glass-card rounded-xl p-8 mb-8 animated-element">
+                        <h3 class="text-xl font-semibold mb-4">Other Skills</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="text-code">Git & GitHub</span>
+                            <span class="text-code">Docker</span>
+                            <span class="text-code">Kubernetes</span>
+                            <span class="text-code">REST APIs</span>
+                            <span class="text-code">GraphQL</span>
+                            <span class="text-code">UI/UX Design</span>
+                            <span class="text-code">CI/CD</span>
+                            <span class="text-code">Testing (Jest/Cypress)</span>
+                            <span class="text-code">Python</span>
+                            <span class="text-code">Performance Optimization</span>
+                            <span class="text-code">Web Security</span>
+                            <span class="text-code">Agile Methodologies</span>
+                            <span class="text-code">Technical Leadership</span>
+                            <span class="text-code">Microservices</span>
+                            <span class="text-code">Serverless</span>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-8 animated-element">
+                        <h3 class="text-xl font-semibold mb-4">Languages</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-3">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <h4 class="font-medium">English</h4>
+                                </div>
+                                <p class="subtext">Native/Bilingual</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-3">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <h4 class="font-medium">Spanish</h4>
+                                </div>
+                                <p class="subtext">Professional Proficiency</p>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center mb-2">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-3">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                    <h4 class="font-medium">French</h4>
+                                </div>
+                                <p class="subtext">Limited Working</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-2 flex items-center">
+                <span class="text-primary-400 mr-3"><i class="fas fa-code-branch"></i></span>
+                <span class="gradient-text">Featured Projects</span>
+            </h2>
+            <div class="w-16 h-0.5 bg-primary-500 mb-12"></div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="glass-card project-card rounded-xl overflow-hidden transition-all duration-300 animated-element">
+                    <div class="h-48 bg-gradient-to-r from-primary-900 to-purple-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-project-diagram text-6xl text-primary-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">E-Commerce Platform</h3>
+                        <p class="subtext mb-4">A modern e-commerce platform with real-time inventory and payment processing.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-code">React</span>
+                            <span class="text-code">Node.js</span>
+                            <span class="text-code">MongoDB</span>
+                            <span class="text-code">Stripe API</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-subtext hover:text-primary-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-subtext hover:text-primary-400">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="glass-card project-card rounded-xl overflow-hidden transition-all duration-300 animated-element">
+                    <div class="h-48 bg-gradient-to-r from-primary-900 to-purple-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-chart-network text-6xl text-primary-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Data Visualization Dashboard</h3>
+                        <p class="subtext mb-4">Interactive dashboard for visualizing complex datasets with custom charts.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-code">Vue.js</span>
+                            <span class="text-code">D3.js</span>
+                            <span class="text-code">Firebase</span>
+                            <span class="text-code">WebSockets</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-subtext hover:text-primary-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-subtext hover:text-primary-400">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="glass-card project-card rounded-xl overflow-hidden transition-all duration-300 animated-element">
+                    <div class="h-48 bg-gradient-to-r from-primary-900 to-purple-900 relative">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <i class="fas fa-lock text-6xl text-primary-400"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Auth Microservice</h3>
+                        <p class="subtext mb-4">Secure authentication service with OAuth 2.0 and multi-factor authentication.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-code">Node.js</span>
+                            <span class="text-code">Redis</span>
+                            <span class="text-code">JWT</span>
+                            <span class="text-code">OAuth 2.0</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-subtext hover:text-primary-400">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="text-subtext hover:text-primary-400">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center animated-element">
+                <a href="#" class="glass-card py-3 px-8 inline-block rounded-lg hover-glow">
+                    View All Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 px-6 bg-gray-800/30">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-2 flex items-center">
+                <span class="text-primary-400 mr-3"><i class="fas fa-briefcase"></i></span>
+                <span class="gradient-text">Work Experience</span>
+            </h2>
+            <div class="w-16 h-0.5 bg-primary-500 mb-12"></div>
+            
+            <div class="relative ml-8 md:ml-0">
+                <!-- Vertical Line -->
+                <div class="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-700 via-purple-700 to-primary-700"></div>
+                
+                <!-- Timeline items -->
+                <div class="relative pl-10 pb-12 group animated-element">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card rounded-xl p-6 group-hover:shadow-lg transition">
+                        <div class="flex flex-col md:flex-row justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold">Senior Software Engineer</h3>
+                                <p class="text-primary-400">TechVision Inc.</p>
+                            </div>
+                            <span class="subtext text-sm md:text-base">Jan 2021 - Present</span>
+                        </div>
+                        <ul class="mt-4 list-disc pl-5 space-y-1 subtext">
+                            <li>Lead development of customer-facing dashboards used by 500k+ users</li>
+                            <li>Optimized API response times by 60% through database query improvements</li>
+                            <li>Mentored junior developers and implemented best practices</li>
+                            <li>Architected microservices platform reducing deployment times by 40%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="relative pl-10 pb-12 group animated-element">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card rounded-xl p-6 group-hover:shadow-lg transition">
+                        <div class="flex flex-col md:flex-row justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold">Full Stack Developer</h3>
+                                <p class="text-primary-400">InnovateHub</p>
+                            </div>
+                            <span class="subtext text-sm md:text-base">Mar 2018 - Dec 2020</span>
+                        </div>
+                        <ul class="mt-4 list-disc pl-5 space-y-1 subtext">
+                            <li>Developed and maintained 10+ production applications with React and Node.js</li>
+                            <li>Created a CI/CD pipeline reducing deployment errors by 35%</li>
+                            <li>Implemented automated testing suite increasing code coverage to 90%</li>
+                            <li>Collaborated on UX design leading to 25% increase in user engagement</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="relative pl-10 pb-12 group animated-element">
+                    <div class="timeline-dot"></div>
+                    <div class="glass-card rounded-xl p-6 group-hover:shadow-lg transition">
+                        <div class="flex flex-col md:flex-row justify-between">
+                            <div>
+                                <h3 class="text-xl font-semibold">Frontend Developer</h3>
+                                <p class="text-primary-400">WebWorks Co.</p>
+                            </div>
+                            <span class="subtext text-sm md:text-base">Jun 2016 - Feb 2018</span>
+                        </div>
+                        <ul class="mt-4 list-disc pl-5 space-y-1 subtext">
+                            <li>Built responsive interfaces for enterprise clients</li>
+                            <li>Optimized application performance leading to 40% faster load times</li>
+                            <li>Contributed to migration from Angular to React</li>
+                            <li>Collaborated with designers to implement pixel-perfect UI components</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-2 flex items-center">
+                <span class="text-primary-400 mr-3"><i class="fas fa-envelope"></i></span>
+                <span class="gradient-text">Get In Touch</span>
+            </h2>
+            <div class="w-16 h-0.5 bg-primary-500 mb-12"></div>
+            
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6 animated-element">
+                        Let's work together on your next project
+                    </h3>
+                    
+                    <div class="glass-card rounded-xl p-8 animated-element">
+                        <p class="mb-6 animated-element">
+                        I'm open to new opportunities, freelance projects, and technical consultations.
+                        Feel free to reach out for collaboration or just to say hello!
+                        </p>
+                        
+                        <div class="space-y-4 animated-element">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Email Me</h4>
+                                    <a href="mailto:alex.morgan@example.com" class="text-primary-400">alex.morgan@example.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">LinkedIn</h4>
+                                    <a href="#" class="text-primary-400">linkedin.com/in/alex-morgan</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Twitter</h4>
+                                    <a href="#" class="text-primary-400">twitter.com/am_engineer</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-medium">Location</h4>
+                                    <p>San Francisco, California</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl p-8 animated-element">
+                    <h3 class="text-xl font-semibold mb-6">Send me a message</h3>
+                    <form>
+                        <div class="mb-6">
+                            <label class="block mb-2 subtext">Name</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2 subtext">Email</label>
+                            <input type="email" class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2 subtext">Subject</label>
+                            <input type="text" class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block mb-2 subtext">Message</label>
+                            <textarea rows="5" class="w-full px-4 py-3 bg-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-4 rounded-lg bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 transition hover-glow">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="#" class="text-xl font-bold">
+                        <span class="gradient-text">&lt;AM/&gt;</span> Alex Morgan
+                    </a>
+                    <p class="subtext mt-2">Full Stack Software Engineer</p>
+                </div>
+                
+                <div class="flex space-x-8">
+                    <a href="#" class="hover:text-primary-400 transition">
+                        <i class="fab fa-github text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-primary-400 transition">
+                        <i class="fab fa-linkedin-in text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-primary-400 transition">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="hover:text-primary-400 transition">
+                        <i class="fab fa-dev text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center subtext text-sm">
+                <p>© 2023 Alex Morgan. All rights reserved.</p>
+                <p class="mt-2">Designed and built with <i class="fas fa-heart text-red-500"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-gradient-to-r from-primary-600 to-purple-600 flex items-center justify-center hover-glow shadow-lg">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
