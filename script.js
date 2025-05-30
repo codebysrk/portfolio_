@@ -1,19 +1,24 @@
 // Mobile menu toggle
-document
-  .getElementById("mobile-menu-button")
-  .addEventListener("click", function () {
-    document.getElementById("mobile-menu").classList.remove("hidden");
+document.addEventListener("DOMContentLoaded", function () {
+  const menuBtn = document.getElementById("mobile-menu-button");
+  const closeBtn = document.getElementById("close-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  // Toggle menu on hamburger button click
+  menuBtn.addEventListener("click", function () {
+    mobileMenu.classList.toggle("hidden");
   });
 
-document.getElementById("close-menu").addEventListener("click", function () {
-  document.getElementById("mobile-menu").classList.add("hidden");
-});
+  // Close menu on close button click
+  closeBtn.addEventListener("click", function () {
+    mobileMenu.classList.add("hidden");
+  });
 
-// Close menu when clicking links
-const mobileLinks = document.querySelectorAll("#mobile-menu a");
-mobileLinks.forEach((link) => {
-  link.addEventListener("click", function () {
-    document.getElementById("mobile-menu").classList.add("hidden");
+  // Optional: Close menu when clicking a link inside the menu
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      mobileMenu.classList.add("hidden");
+    });
   });
 });
 
